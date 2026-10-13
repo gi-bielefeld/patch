@@ -202,22 +202,54 @@
         height: 2.75rem;
       }
     }
+
+    .hero__layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero__text {
+      flex: 1;
+    }
+
+    .hero__logo {
+      display: block;
+      width: clamp(10rem, 24vw, 18rem);
+      max-height: 10rem;
+      height: auto;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .hero__layout {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .hero__logo {
+        width: clamp(9rem, 45vw, 14rem);
+        max-height: 8rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="hero">
-    <div class="hero__content">
-      <h1 class="brand-heading">
-        <img
-          class="brand-heading__logo"
-          src="assets/logos/patch-logo.svg"
-          alt=""
-        >
-        <span>PATCH</span>
-      </h1>
-      <p>
-        Collection of software solutions for pangenome analyses
-      </p>
+    <div class="hero__content hero__layout">
+      <div class="hero__text">
+        <h1>PATCH</h1>
+        <p>Collection of software solutions for pangenome analyses</p>
+      </div>
+
+      <img
+        class="hero__logo"
+        src="assets/logos/patch-logo.svg"
+        alt=""
+      >
     </div>
   </header>
 
@@ -225,11 +257,20 @@
     <section aria-labelledby="about-heading">
       <h2 id="about-heading">About PATCH</h2>
       <p>
-        The <em>Pangenome Analysis Toolbox</em> (PATCH) is a comprehensive collection
-        of software tools designed to facilitate pangenome analyses. The
-        toolbox offers a range of command-line tools and web-based interfaces
-        that enable researchers to analyze, compare, and predict the properties
-        of multiple genomes.
+        The <em>Pangenome Analysis Toolbox</em> (PATCH) is a collection 
+        of software tools that supports selected tasks in pangenome analysis. 
+        It includes command-line tools and web-based interfaces for analyzing, 
+        comparing, and predicting specific properties of multiple genomes.
+      </p>
+
+      <p>
+        Many PATCH tools are available as Nextflow workflows that run the 
+        corresponding
+        tool through <a href="https://clowm.bi.denbi.de/">CloWM</a>, a web 
+        platform for launching scientific workflows. These
+        workflows can be run through CloWM’s web interface using its computing
+        infrastructure, without setting up the workflow execution environment
+        locally.
       </p>
 
       <h3>Key features</h3>
@@ -237,7 +278,7 @@
         <li>
           A suite of freely available command-line tools for phylogenetic
           reconstruction, local alignment search, core genome detection, and
-          pangenome prediction
+          pangenome openness prediction
         </li>
         <li>Web-based interfaces for benchmarking and comparing tool performance</li>
         <li>
@@ -351,7 +392,8 @@
           genomic sequences forming the so-called core of a pangenome. The
           input pangenome is provided as an existing sequence graph. Corer
           computes its core genome, consisting of all <i>k</i>-length substrings
-          occurring in at least q individual genomes and all short sequence
+          occurring in at least <i>q</i> individual genomes and all short 
+          sequence
           fragments connecting them inside the graph. The <i>q</i> parameter and the
           maximum fragment length may be adjusted to compute either more
           conservative or more relaxed core genomes. Results may be output
@@ -376,8 +418,9 @@
           <span>Pangrowth</span>
         </h3>
         <p>
-          Pangrowth is a freely available command-line tool designed to predict
-          the openness of a pangenome and estimate core genome size. It can
+          Pangrowth is a freely available command-line tool designed to estimate
+           pangenome diversity through openness, core genome size, and Hill 
+          numbers. It can
           analyze FASTA sequences using <i>k</i>-mers (short DNA sequences of length
           17–31 nucleotides), as well as other genomic elements such as genes,
           CDS, and ORFs, provided as either a frequency histogram or a
